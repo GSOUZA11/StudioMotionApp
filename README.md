@@ -1,5 +1,3 @@
-🎬 Studio Motion - Criatividade em Movimento
-Bem-vindo ao repositório do Studio Motion, uma landing page responsiva e animada para uma produtora de vídeos e design digital. Este projeto foi desenvolvido com foco em experiência visual, animações suaves e interface moderna.
 
 🎬 Studio Motion - Criatividade em Movimento
 Bem-vindo ao repositório do Studio Motion, uma landing page responsiva e animada para uma produtora de vídeos e design digital. Este projeto foi desenvolvido com foco em experiência visual, animações suaves e interface moderna.
