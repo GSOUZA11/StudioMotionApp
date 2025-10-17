@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><!-- Define a codificação de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Responsividade: ajusta o layout ao tamanho da tela -->
+    <title>Studio Motion - Carregando...</title><!-- Título da aba do navegador -->
+    <style>
+        /* Reset e configurações gerais */
+        * {
+            margin: 0; /* Remove margens padrão */
+            padding: 0; /* Remove espaçamentos internos padrão */
+            box-sizing: border-box; /* Inclui borda e padding no cálculo de largura/altura */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte principal do site */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);/* Fundo com gradiente diagonal */
+            display: flex;/* Centraliza conteúdo com flexbox */
+            justify-content: center; /* Alinha horizontalmente ao centro */
+            align-items: center; /* Alinha verticalmente ao centro */
+            min-height: 100vh; /* Altura mínima igual à altura da tela */
+            overflow: hidden; /* Esconde conteúdo que ultrapassa os limites */
+            position: relative; /* Permite posicionamento absoluto de elementos filhos */
+        }
+
+        /* Partículas de fundo animadas - cria sensação de movimento contínuo */
+        .particles {
+            position: absolute; /* Posiciona sobre o body */
+            width: 100%; /* Ocupa toda a largura */
+            height: 100%; /* Ocupa toda a altura */
+            overflow: hidden; /* Esconde partículas fora da área visível */
+        }
+
+        .particle {
+            position: absolute; /* Cada partícula é posicionada individualmente */
+            background: rgba(255, 255, 255, 0.1); /* Cor com transparência */
+            border-radius: 50%; /* Formato circular */
+            animation: float 15s infinite ease-in-out; /* Aplica animação de flutuação */    
+        }
+
+        /* Configurações individuais para cada partícula */
+        .particle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%; /* Posição horizontal */
+            animation-delay: 0s;
+            animation-duration: 12s;
+        }
+
+        .particle:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            left: 70%;
+            animation-delay: 2s;
+            animation-duration: 18s;
+        }
+
+        .particle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            left: 40%;
+            animation-delay: 4s;
+            animation-duration: 14s;
+        }
+
+        .particle:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            left: 85%;
+            animation-delay: 1s;
+            animation-duration: 16s;
+        }
+
+        .particle:nth-child(5) {
+            width: 90px;
+            height: 90px;
+            left: 25%;
+            animation-delay: 3s;
+            animation-duration: 13s;
+        }
+
+        /* Animação de flutuação das partículas - movimento suave e contínuo */
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0); /* Começa fora da tela, pequeno */
+                opacity: 0; /* Invisível no início */
+            }
+            10% {
+                opacity: 0.3; /* Começa a aparecer */
+            }
+            90% {
+                opacity: 0.3; /* Mantém visibilidade */
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5); /* Sai por cima da tela, maior */
+                opacity: 0; /* Desaparece ao final */
+            }
+        }
+
+        /* Container principal */
+        .loading-container {
+            text-align: center; /* Centraliza o conteúdo horizontalmente */
+            z-index: 10;/* Garante que fique acima de outros elementos */
+            position: relative; /* Permite posicionamento absoluto de elementos filhos */
+        }
+
+        /* Logo do Studio Motion criada com CSS  */
+        .logo {
+            width: 150px; /* Largura da logo */
+            height: 150px; /* Altura da logo */
+            margin: 0 auto 40px; /* Centraliza e adiciona espaçamento inferior */
+            position: relative; /* Permite posicionamento interno */
+            animation: logoAppear 1.5s ease-out; /* Aplica animação de entrada */
+        }
+
+        /* Animação de aparecimento da logo */
+        @keyframes logoAppear {
+            from {
+                transform: scale(0) rotate(-180deg); /* Começa pequena e gira */
+                opacity: 0; /* Invisível no início */
+            }
+            to {
+                transform: scale(1) rotate(0deg); /* Termina em tamanho normal e reta */
+                opacity: 1; /* Totalmente visível */
+            }
+        }
+
+        /* Círculo externo da logo */
+        .logo-circle {
+            width: 100%; /* Ocupa toda a largura do elemento pai */
+            height: 100%; /* Ocupa toda a altura do elemento pai */
+            border: 5px solid rgba(255, 255, 255, 0.3); /* Borda com transparência */
+            border-radius: 50%; /* Formato circular */
+            position: relative; /* Permite posicionamento interno */
+            animation: rotate 3s linear infinite; /* Aplica rotação contínua */
+        }
+
+        /* Animação de rotação contínua */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg); /* Início sem rotação */
+            }
+            to {
+                transform: rotate(360deg); /* Rotação completa */
+            }
+        }
+
+        /* Elementos internos da logo - representam movimento */
+        .logo-inner {
+            position: absolute; /* Posiciona no centro do círculo */
+            top: 50%; /* Centraliza verticalmente */
+            left: 50%; /* Centraliza horizontalmente */
+            transform: translate(-50%, -50%); /* Ajusta para o centro exato */
+            width: 80px; /* Largura da área interna */
+            height: 80px; /* Altura da área interna */
+        }
+
+        /* Barra que simula movimento */
+        .motion-bar {
+            position: absolute; /* Permite posicionamento individual dentro da logo-inner */
+            background: white; /* Cor das barras */
+            border-radius: 10px; /* Bordas arredondadas para suavidade */
+        }
+
+        /* Primeira barra - menor e com animação imediata */
+        .motion-bar:nth-child(1) {
+            width: 8px; /* Largura da barra */
+            height: 40px; /* Altura da barra */
+            left: 15px; /* Posição horizontal dentro da logo-inner */
+            animation: barPulse 1s ease-in-out infinite; /* Animação de pulsação contínua */
+            animation-delay: 0s; /* Sem atraso */
+        }
+
+        /* Segunda barra - maior e com pequeno atraso */
+        .motion-bar:nth-child(2) {
+            width: 8px;
+            height: 60px;
+            left: 36px;
+            animation: barPulse 1s ease-in-out infinite;
+            animation-delay: 0.2s;
+        }
+
+        /* Terceira barra - intermediária e com mais atraso */
+        .motion-bar:nth-child(3) {
+            width: 8px;
+            height: 50px;
+            left: 57px;
+            animation: barPulse 1s ease-in-out infinite;
+            animation-delay: 0.4s;
+        }
+
+        /* Animação de pulsação das barras - representa ondas sonoras/movimento */
+        @keyframes barPulse {
+            0%, 100% {
+                transform: scaleY(0.5); /* Reduz altura vertical */
+                opacity: 0.5; /* Semitransparente */
+            }
+            50% {
+                transform: scaleY(1); /* Altura normal */
+                opacity: 1; /* Totalmente visível */
+            }
+        }
+
+        /* Texto de carregamento */
+        .loading-text {
+            color: white; /* Cor do texto */
+            font-size: 32px; /* Tamanho grande para destaque */
+            font-weight: 700; /* Negrito */
+            margin-bottom: 20px; /* Espaço abaixo do texto */
+            animation: fadeInOut 2s ease-in-out infinite; /* Animação de fade contínua */
+        }
+
+        /* Animação de fade in/out para o texto */
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0.5; /* Semitransparente no início e fim */
+            }
+            50% {
+                opacity: 1; /* Totalmente visível no meio */
+            }
+        }
+
+        /* Barra de progresso */
+        .progress-bar {
+            width: 300px; /* Largura da barra */
+            height: 6px; /* Altura fina */
+            background: rgba(255, 255, 255, 0.2); /* Fundo semitransparente */
+            border-radius: 10px; /* Bordas arredondadas */
+            margin: 30px auto; /* Espaçamento e centralização */
+            overflow: hidden; /* Esconde o conteúdo que ultrapassa os limites */
+        }
+
+        /* Preenchimento da barra de progresso */
+        .progress-fill {
+            height: 100%; /* Ocupa toda a altura da barra */
+            background: linear-gradient(90deg, #fff, #f093fb); /* Gradiente horizontal */
+            border-radius: 10px; /* Bordas arredondadas */
+            animation: loading 3s ease-in-out forwards; /* Animação de preenchimento */
+        }
+
+        /* Animação da barra de progresso */
+        @keyframes loading {
+            from {
+                width: 0%; /* Começa vazia */
+            }
+            to {
+                width: 100%; /* Termina cheia */
+            }
+        }
+
+        /* Botão de entrada */
+        .enter-button {
+            display: inline-block; /* Permite margens e padding */
+            padding: 15px 40px; /* Espaçamento interno */
+            background: white; /* Cor de fundo */
+            color: #667eea; /* Cor do texto */
+            text-decoration: none; /* Remove sublinhado */
+            border-radius: 50px; /* Bordas arredondadas  */
+            font-size: 18px;/* Tamanho do texto */
+            margin-top: 20px; /* Espaço acima do botão */
+            opacity: 0; /* Invisível inicialmente */
+            transform: translateY(20px); /* Levemente deslocado para baixo */
+            animation: buttonAppear 0.5s ease-out 2.5s forwards; /* Animação de entrada com atraso */
+            transition: all 0.3s ease; /* Transição suave para hover */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra para profundidade */
+        }
+
+        /* Animação de aparecimento do botão */
+        @keyframes buttonAppear {
+            to {
+                opacity: 1; /* Torna visível */
+                transform: translateY(0); /* Volta à posição original */
+            }
+        }
+
+        /* Efeito hover no botão */
+        .enter-button:hover {
+            transform: translateY(-5px) scale(1.05); /* Eleva e aumenta levemente */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Sombra mais intensa */
+            background: linear-gradient(135deg, #fff, #f5f5f5); /* Gradiente suave no fundo */
+        }
+
+        .enter-button:active {
+            transform: translateY(-2px) scale(1.02); /* Leve compressão ao clique */
+        }
+
+        /* Subtítulo */
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9); /* Cor branca com leve transparência */
+            font-size: 16px; /* Tamanho menor que o título */
+            margin-top: 15px; /* Espaço acima do subtítulo */
+            animation: fadeInOut 2s ease-in-out infinite; /* Animação de fade contínua */
+            animation-delay: 0.5s;  /* Leve atraso para aparecer depois do título */
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas de fundo para criar movimento contínuo -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Container principal de carregamento -->
+    <div class="loading-container">
+        <!-- Logo do Studio Motion -->
+        <div class="logo">
+            <div class="logo-circle">
+                <div class="logo-inner">
+                    <div class="motion-bar"></div>
+                    <div class="motion-bar"></div>
+                    <div class="motion-bar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Texto principal -->
+        <h1 class="loading-text">STUDIO MOTION</h1>
+        <p class="subtitle">Criatividade em Movimento</p>
+
+        <!-- Barra de progresso -->
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+
+        <!-- Botão para entrar na página principal -->
+        <a href="./principal.html" class="enter-button">ENTRAR</a>
+    </div>
+</body>
+</html>
+
+<!-- 
+EXPLICAÇÃO DAS ANIMAÇÕES:
+
+1. @keyframes float: Move as partículas de baixo para cima criando sensação de movimento contínuo
+   - Usa translateY e scale para criar profundidade
+   - animation-iteration-count: infinite para loop contínuo
+
+2. @keyframes logoAppear: Faz a logo aparecer com rotação e escala
+   - Transição suave de entrada
+   - animation-timing-function: ease-out
+
+3. @keyframes rotate: Rotação contínua do círculo da logo
+   - Movimento perpétuo representando "motion"
+   - animation-iteration-count: infinite
+
+4. @keyframes barPulse: Barras pulsando como ondas sonoras
+   - Simula movimento e energia
+   - animation-delay diferentes para efeito cascata
+
+5. @keyframes fadeInOut: Texto pulsando suavemente
+   - Chama atenção sem ser agressivo
+   - Loop infinito suave
+
+6. @keyframes loading: Barra de progresso preenchendo
+   - animation-fill-mode: forwards mantém estado final
+   - animation-duration: 3s
+
+7. @keyframes buttonAppear: Botão aparecendo após carregamento
+   - animation-delay: 2.5s para aparecer depois da barra
+   - animation-fill-mode: forwards
+
+8. :hover no botão: Interatividade ao passar o mouse
+   - Transform e box-shadow para feedback visual
+   - Transition para suavidade
+-->

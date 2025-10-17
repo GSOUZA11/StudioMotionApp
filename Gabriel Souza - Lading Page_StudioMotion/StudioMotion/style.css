@@ -1,0 +1,889 @@
+/* Estilos gerais */
+
+* {
+    margin: 0; /* Remove margens padrão */
+    padding: 0; /* Remove espaçamentos internos padrão */
+    box-sizing: border-box; /* Inclui borda e padding no cálculo de largura/altura */
+}
+
+/* Variavel de cor para facilitar a manutenção do codigo */
+:root {
+    --primary: #667eea; /* Cor principal (azul) */
+    --secondary: #764ba2; /* Cor secundária (roxo) */
+    --accent: #f093fb; /* Cor de destaque (rosa) */
+    --dark: #1a1a2e; /* Fundo escuro */
+    --light: #ffffff; /* Branco puro */
+    --gray: #f5f5f5; /* Cinza claro para fundos suaves */
+}
+
+html {
+    scroll-behavior: smooth; /* Transição suave ao clicar em âncoras */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte moderna e legível */
+    background: var(--dark); /* Fundo escuro usando variável */
+    color: var(--light); /* Texto branco para contraste */
+    overflow-x: hidden; /* Evita rolagem horizontal */
+    line-height: 1.6; /* Espaçamento entre linhas para melhor leitura */
+}
+
+.container {
+    max-width: 1200px; /* Largura máxima do conteúdo */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    padding: 0 20px; /* Espaçamento lateral interno */
+}
+
+
+/* Cria movimento contínuo no fundo da página */
+.wave-background {
+    position: fixed; /* Fixa o fundo para permanecer visível ao rolar */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa toda a largura da tela */
+    height: 100%; /* Ocupa toda a altura da tela */
+    z-index: -1; /* Fica atrás de todos os elementos */
+    background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%); /* Gradiente escuro para profundidade */
+    overflow: hidden; 
+/* Esconde partes das ondas que ultrapassam os limites */
+}
+
+/* Estilização base das ondas */
+.wave {
+    position: absolute; /* Posiciona no fundo da tela */
+    bottom: 0; /* Alinha na parte inferior */
+    left: 0;
+    width: 200%; /* Largura estendida para permitir movimento lateral */
+    height: 200px; /* Altura das ondas */
+    background: linear-gradient(90deg, 
+        rgba(102, 126, 234, 0.1) 0%, 
+        rgba(118, 75, 162, 0.1) 50%, 
+        rgba(240, 147, 251, 0.1) 100%); /* Gradiente suave e translúcido */
+    border-radius: 50%; /* Formato arredondado para simular ondas */
+}
+
+.wave1 {
+    animation: wave 15s linear infinite; /* Animação contínua */
+    opacity: 0.3; /* Transparência média */
+}
+
+.wave2 {
+    animation: wave 20s linear infinite reverse; /* Animação reversa */
+    opacity: 0.2; /* Mais transparente */
+    animation-delay: -5s; /* Começa antes para sobreposição suave */
+}
+
+.wave3 {
+    animation: wave 25s linear infinite; /* Animação mais lenta */
+    opacity: 0.1; /* Quase imperceptível */
+    animation-delay: -10s; /* Começa ainda antes para profundidade */
+}
+
+/* Animação das ondas - movimento lateral contínuo */
+@keyframes wave {
+    0% {
+        transform: translateX(0) translateY(0); /* Posição inicial */
+    }
+    50% {
+        transform: translateX(-25%) translateY(-20px); /* Move para a esquerda e sobe levemente */
+    }
+    100% {
+        transform: translateX(-50%) translateY(0); /* Move mais para a esquerda e volta à posição vertical */
+    }
+}
+
+/* Header da pagina*/
+.header {
+    padding: 20px 0; /* Espaçamento vertical interno */
+    position: fixed; /* Fixa o header no topo da tela */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Garante que fique acima dos demais elementos */
+    background: rgba(26, 26, 46, 0.95); /* Fundo escuro com transparência */
+    backdrop-filter: blur(10px); /* Efeito de desfoque no fundo */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Linha sutil na base */
+    animation: slideDown 0.8s ease-out; /* Animação de entrada suave */
+}
+
+/* Animação de entrada do header */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%); /* Começa fora da tela */
+        opacity: 0; /* Invisível no início */
+    }
+    to {
+        transform: translateY(0); /* Volta à posição original */
+        opacity: 1; /* Totalmente visível */
+    }
+}
+
+/* Layout interno do header */
+.header .container {
+    display: flex; /* Flexbox para alinhamento horizontal */
+    justify-content: space-between; /* Espaço entre logo e navegação */
+    align-items: center; /* Alinha verticalmente ao centro */
+}
+
+.logo-header {
+    display: flex; /* Flexbox para agrupar logo e texto */
+    align-items: center;
+    gap: 15px; /* Espaço entre ícone e texto */
+}
+
+/* Logo mini para header e footer */
+.logo-mini {
+    width: 50px;
+    height: 50px;
+}
+
+.logo-circle-mini {
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgba(255, 255, 255, 0.3); /* Borda branca com transparência */
+    border-radius: 50%; /* Formato circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: rotate 3s linear infinite; /* Rotação contínua */
+}
+
+/* Rotação contínua da logo */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Barras internas da logo */
+.logo-inner-mini {
+    display: flex;
+    gap: 5px;
+    align-items: flex-end; /* Alinha as barras na base */
+}
+
+/* Barras que simulam movimento */
+.bar-mini {
+    width: 4px;
+    background: white;
+    border-radius: 2px;
+}
+
+/* Animação individual das barras */
+.bar-mini:nth-child(1) {
+    height: 15px;
+    animation: barPulse 1s ease-in-out infinite;
+}
+
+.bar-mini:nth-child(2) {
+    height: 25px;
+    animation: barPulse 1s ease-in-out infinite;
+    animation-delay: 0.2s;
+}
+
+.bar-mini:nth-child(3) {
+    height: 20px;
+    animation: barPulse 1s ease-in-out infinite;
+    animation-delay: 0.4s;
+}
+
+/* Pulsação das barras da logo */
+@keyframes barPulse {
+    0%, 100% {
+        transform: scaleY(0.7); /* Reduz altura */
+        opacity: 0.7; /* Semitransparente */
+    }
+    50% {
+        transform: scaleY(1); /* Altura normal */
+        opacity: 1; /* Totalmente visível */
+    } 
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px; /* Espaçamento entre letras */
+}
+
+/* Navegação */
+.nav {
+    display: flex;
+    gap: 30px; /* Espaço entre os links */
+}
+
+.nav-link {
+    color: var(--light); /* Cor branca */
+    text-decoration: none; /* Remove sublinhado */
+    font-weight: 500; 
+    position: relative; /* Necessário para o efeito ::after */
+    transition: color 0.3s ease; /* Transição suave de cor */
+}
+
+/* Hover nos links */
+.nav-link:hover {
+    color: var(--accent); /* Cor de destaque ao passar o mouse */
+}
+
+/* Efeito de linha animada no hover dos links */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Posição abaixo do texto */
+    left: 0;
+    width: 0; /* Começa invisível */
+    height: 2px;
+    background: var(--accent); /* Cor da linha */
+    transition: width 0.3s ease; /* Transição suave */
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Linha se expande ao passar o mouse */
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 80px;
+}
+
+.hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-content {
+    animation: fadeInLeft 1s ease-out;
+}
+
+/* Animação de entrada do conteúdo hero */
+@keyframes fadeInLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.hero-title {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.word {
+    display: inline-block;
+    animation: wordSlide 0.8s ease-out backwards;
+}
+
+.word:nth-child(1) { animation-delay: 0.2s; }
+.word:nth-child(2) { animation-delay: 0.4s; }
+.word:nth-child(3) { animation-delay: 0.6s; }
+.word:nth-child(4) { animation-delay: 0.8s; }
+
+/* Animação de deslizamento das palavras */
+@keyframes wordSlide {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 40px;
+    animation: fadeIn 1s ease-out 1s backwards;
+}
+
+/* Fade in simples */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Botão CTA principal */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 40px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    animation: fadeIn 1s ease-out 1.2s backwards;
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+}
+
+.button-icon {
+    font-size: 24px;
+}
+
+/* Hero Visual - Cards flutuantes */
+.hero-visual {
+    position: relative;
+    height: 500px;
+    animation: fadeInRight 1s ease-out 0.5s backwards;
+}
+
+@keyframes fadeInRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.floating-card {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.card1 {
+    top: 50px;
+    left: 50px;
+    animation: float1 4s ease-in-out infinite;
+}
+
+.card2 {
+    top: 200px;
+    right: 80px;
+    animation: float2 5s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.card3 {
+    bottom: 80px;
+    left: 120px;
+    animation: float3 6s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+/* Animações de flutuação dos cards - movimento suave */
+@keyframes float1 {
+    0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+@keyframes float2 {
+    0%, 100% {
+        transform: translateY(0) rotate(5deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(-5deg);
+    }
+}
+
+@keyframes float3 {
+    0%, 100% {
+        transform: translateY(0) rotate(3deg);
+    }
+    50% {
+        transform: translateY(-25px) rotate(-3deg);
+    }
+}
+
+.card-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    animation: iconBounce 2s ease-in-out infinite;
+}
+
+/* Animação de bounce nos ícones */
+@keyframes iconBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.floating-card p {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+/* Section Service*/
+.services {
+    padding: 100px 0;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.section-title {
+    font-size: 48px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, white, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 60px;
+}
+
+/* Centraliza os cartões na grade */
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.4s ease;
+    animation: fadeInUp 0.8s ease-out backwards;
+    width: 350px;
+  text-align: center;
+}
+
+
+/* Centraliza a seção e define uma largura máxima */
+.services .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+
+/* Centraliza as imagens */
+.service-icon img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Animação de entrada dos cards */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(4) { animation-delay: 0.4s; }
+.service-card:nth-child(5) { animation-delay: 0.5s; }
+.service-card:nth-child(6) { animation-delay: 0.6s; }
+
+.service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent);
+    box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+}
+
+.service-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    animation: iconPulse 3s ease-in-out infinite;
+}
+
+/* Pulsação suave dos ícones */
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.service-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.service-card p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
+
+/* ==================== PORTFOLIO SECTION ==================== */
+.portfolio {
+    padding: 100px 0;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+
+.portfolio-overlay img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+
+.portfolio-item {
+    position: relative;
+    height: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.3), 
+        rgba(118, 75, 162, 0.3));
+    transition: transform 0.4s ease;
+    animation: fadeInUp 0.8s ease-out backwards;
+}
+
+.portfolio-item:nth-child(1) { animation-delay: 0.1s; }
+.portfolio-item:nth-child(2) { animation-delay: 0.2s; }
+.portfolio-item:nth-child(3) { animation-delay: 0.3s; }
+.portfolio-item:nth-child(4) { animation-delay: 0.4s; }
+
+.portfolio-item:hover {
+    transform: scale(1.05);
+    
+}
+.portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    padding: 40px 30px;
+    transform: translateY(0); 
+    opacity: 1; 
+    transition: none; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.portfolio-item {
+    position: relative;
+    height: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.3), 
+        rgba(118, 75, 162, 0.3));
+    transition: transform 0.4s ease;
+    animation: fadeInUp 0.8s ease-out backwards;
+}
+
+
+.portfolio-item:hover .portfolio-overlay {
+    transform: translateY(0);
+    opacity: 1;
+    
+    
+}
+
+.portfolio-overlay h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    
+}
+
+.portfolio-overlay p {
+    font-size: 16px;
+    color: var(--accent);
+    
+}
+
+
+/* ==================== CTA SECTION ==================== */
+.cta-section {
+    padding: 100px 0; /* Espaçamento vertical  */
+    background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.1), 
+        rgba(118, 75, 162, 0.1));/* Fundo com gradiente suave e translúcido */
+    text-align: center; /* Centraliza todo o conteúdo */
+}
+
+/* Conteúdo da CTA com animação de entrada */
+.cta-content {
+    animation: fadeInUp 0.8s ease-out; /* Animação suave de entrada */
+}
+
+/* Título principal da CTA */
+.cta-title {
+    font-size: 48px; /* Tamanho grande para destaque */
+    font-weight: 800; /* Negrito intenso */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+/* Texto complementar da CTA */
+.cta-text {
+    font-size: 20px; /* Tamanho médio para leitura confortável */
+    color: rgba(255, 255, 255, 0.8); /* Branco com leve transparência */
+    margin-bottom: 40px;  /* Espaço abaixo do texto */
+}
+
+/* Botão grande da CTA */
+.cta-button-large {
+    display: inline-flex; /* Flexbox para alinhar ícone e texto */
+    align-items: center;
+    gap: 15px; /* Espaço entre ícone e texto */
+    padding: 22px 50px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary)); /* Gradiente com cores principais */
+    color: white; /* Texto branco */
+    text-decoration: none; /* Remove sublinhado */
+    border-radius: 50px; /* Bordas arredondadas */
+    font-weight: 700; /* Negrito */
+    font-size: 20px; /* Tamanho do texto */
+    transition: all 0.3s ease; /* Transição suave para hover */
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4); /* Sombra para profundidade */
+}
+
+/* Efeito ao passar o mouse no botão */
+.cta-button-large:hover {
+    transform: translateY(-5px) scale(1.05); /* Eleva e aumenta levemente */
+    box-shadow: 0 20px 50px rgba(102, 126, 234, 0.6); /* Sombra mais intensa */
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    padding: 40px 0;
+    background: rgba(0, 0, 0, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-text {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+}
+
+/* ==================== BOTÃO WHATSAPP FLUTUANTE ==================== */
+.whatsapp-float {
+    position: fixed; /* Fixa o botão na tela */
+    bottom: 30px; /* Distância da base da tela */
+    right: 30px; /* Distância da lateral direita */
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #25d366, #128c7e); /* Gradiente com cores do WhatsApp */
+    border-radius: 50%; /* Formato circular */
+    display: flex; /* Centraliza o ícone */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5); /* Sombra para destaque */
+    z-index: 1000; /* Garante que fique acima dos demais elementos */
+    transition: all 0.3s ease; /* Transição suave para hover */
+    animation: blink 2s ease-in-out infinite; /* Animação de piscar contínua */
+}
+
+/* Animação de piscar do botão WhatsApp */
+@keyframes blink {
+    0%, 100% {
+        box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5); /* Sombra padrão */
+        transform: scale(1); /* Tamanho normal */
+    }
+    50% {
+        box-shadow: 0 15px 50px rgba(37, 211, 102, 0.8); /* Sombra mais intensa */
+        transform: scale(1.1); /* Leve aumento no tamanho */
+    }
+}
+
+/* Efeito ao passar o mouse no botão */
+.whatsapp-float:hover {
+    transform: scale(1.15); /* Aumenta o botão */
+    box-shadow: 0 15px 50px rgba(37, 211, 102, 0.8); /* Sombra mais intensa */
+}
+
+/* Ícone do WhatsApp dentro do botão */
+.whatsapp-icon {
+    font-size: 36px; /*Tamanho do icone */
+}
+
+/* ==================== RESPONSIVIDADE ==================== */
+@media (max-width: 768px) { 
+    /* Esconde a navegação em telas pequenas */
+    .nav {
+        display: none;
+    }
+    
+    /* Ajusta o layout da seção hero para uma única coluna */
+    .hero .container {
+        grid-template-columns: 1fr; /* Layout vertical */
+    }
+    
+    /* Reduz o tamanho do título principal */
+    .hero-title {
+        font-size: 40px; /* Tamanho menor para melhor leitura em mobile */
+    }
+    
+    /* Ajusta a altura da imagem ou visual da seção hero */
+    .hero-visual {
+        height: 300px; /* Altura reduzida para caber melhor na tela */
+    }
+    
+    /* Seção de serviços em uma única coluna */
+    .services-grid {
+        grid-template-columns: 1fr; /* Layout vertical */
+    }
+    
+    /* Seção de portfólio em uma única coluna */
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Layout vertical */
+    }
+    
+    /* Reduz o tamanho do título da seção CTA */
+    .cta-title {
+        font-size: 32px; /* Tamanho menor para melhor adaptação */
+    }
+}
+
+/* 
+==================== EXPLICAÇÃO DAS ANIMAÇÕES ====================
+
+1. @keyframes wave: Ondas no fundo se movendo lateralmente
+   - animation-duration: 15s, 20s, 25s (diferentes velocidades)
+   - animation-iteration-count: infinite
+   - animation-direction: reverse na wave2
+
+2. @keyframes slideDown: Header deslizando do topo
+   - animation-timing-function: ease-out
+   - animation-duration: 0.8s
+
+3. @keyframes rotate: Rotação contínua da logo
+   - animation-iteration-count: infinite
+   - animation-timing-function: linear
+
+4. @keyframes barPulse: Barras da logo pulsando
+   - animation-duration: 1s
+   - animation-iteration-count: infinite
+   - animation-delay: 0s, 0.2s, 0.4s (efeito cascata)
+
+5. @keyframes fadeInLeft/fadeInRight: Entrada do hero
+   - animation-timing-function: ease-out
+   - animation-fill-mode: backwards
+
+6. @keyframes wordSlide: Palavras do título deslizando
+   - animation-delay diferentes para efeito sequencial
+   - animation-fill-mode: backwards
+
+7. @keyframes float1/float2/float3: Cards flutuando
+   - animation-iteration-count: infinite
+   - animation-timing-function: ease-in-out
+   - Movimento em Y e rotação
+
+8. @keyframes iconBounce: Ícones com bounce suave
+   - animation-iteration-count: infinite
+   - Scale para dar vida
+
+9. @keyframes fadeInUp: Cards entrando de baixo para cima
+   - animation-delay sequencial nos cards
+   - animation-fill-mode: backwards
+
+10. @keyframes iconPulse: Pulsação suave nos ícones
+    - animation-iteration-count: infinite
+    - animation-duration: 3s
+
+11. @keyframes blink: Botão WhatsApp piscando
+    - animation-iteration-count: infinite
+    - animation-timing-function: ease-in-out
+    - Box-shadow e scale para destaque
+
+12. :hover nos elementos: Interatividade
+    - nav-link: linha aparecendo com transition
+    - service-card: translateY e scale
+    - portfolio-item: scale com overlay
+    - Todos usam transition para suavidade
+
+Propriedades utilizadas:
+- animation-delay: para sincronizar animações
+- animation-duration: controlar velocidade
+- animation-direction: reverse para variar movimento
+- animation-iteration-count: infinite para loops
+- animation-timing-function: ease, ease-in-out, linear
+- animation-fill-mode: backwards, forwards
+- animation: propriedade abreviada em múltiplos elementos
+*/
